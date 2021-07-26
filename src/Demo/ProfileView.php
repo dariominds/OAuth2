@@ -64,7 +64,7 @@ class ProfileView
 					<a class="pure-menu-heading" href="">Dealer e-Process OAuth2.0 Demo</a>
 			
 					<ul class="pure-menu-list">
-						<li class="pure-menu-item"><a href="https://github.com/dariominds/OAuth2Demo" class="pure-menu-link">Github Source Code</a></li>
+						<li class="pure-menu-item"><a href="https://github.com/dariominds/OAuth2" class="pure-menu-link">Github Source Code</a></li>
 					</ul>
 				</div>
 			</div>
