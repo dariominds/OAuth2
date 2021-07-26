@@ -13,7 +13,7 @@ class WebApplication
 
 	private function buildService()
 	{
-		$configureProviders = include_once __DIR__.'/../../config.php';
+		$configureProviders = include_once __DIR__.'/../../config/config.php';
 
 		$builder = new ServiceBuilder();
 		$service = $builder->buildService($configureProviders);
