@@ -59,6 +59,17 @@ class Service
 	}
 	
 	/**
+	 * get access token from given access code
+	 *
+	 * @param string $code
+	 * @return array
+	 */
+	public function getAccessToken($code)
+	{
+		return $this->provider->getAccessToken($code);
+	}
+
+	/**
 	 * get Provider instance
 	 *
 	 * @return Provider object
@@ -68,23 +79,21 @@ class Service
 		return $this->provider;
 	}
 
+	/**
+	 * generate auth url function
+	 *
+	 * @return string $auth_url
+	 */
 	public function makeAuthUrl()
 	{
 		return $this->provider->getAuthUrl();
 	}
 
-	public function getAccessToken($code)
-	{
-		return $this->provider->getAccessToken($code);
-	}
-
-	public function setAccessCode($code)
-	{
-		$token = $this->provider->getAccessToken($code);
-		$this->provider->setAccessToken($token);
-		$_SESSION["accessToken"] = $token;
-	}
-
+	/**
+	 * return a User class function
+	 *
+	 * @return User $user
+	 */
 	public function getUser()
 	{
 		if (isset($_SESSION['accessToken'])) {
@@ -104,6 +113,11 @@ class Service
 
 	}
 
+	/**
+	 * Logout user unset the session and revoke token
+	 *
+	 * @return void
+	 */
 	public function logOutUser()
 	{
 		if (isset($_SESSION['accessToken'])) {
@@ -113,5 +127,17 @@ class Service
 		$this->provider->revokeToken();
 	}
 
+	/**
+	 * set the access code in exchange for token function
+	 *
+	 * @param string $code
+	 * @return void
+	 */
+	public function setAccessCode($code)
+	{
+		$token = $this->provider->getAccessToken($code);
+		$this->provider->setAccessToken($token);
+		$_SESSION["accessToken"] = $token;
+	}
 }
 
