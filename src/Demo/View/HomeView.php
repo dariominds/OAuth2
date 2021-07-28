@@ -1,6 +1,8 @@
 <?php
 
-namespace DealerEProcess\TheConstruct\Demo;
+namespace DealerEProcess\TheConstruct\Demo\View;
+
+use DealerEProcess\TheConstruct\Demo\View\AssetsView;
 
 /**
  * Home View
@@ -8,6 +10,14 @@ namespace DealerEProcess\TheConstruct\Demo;
  */
 class HomeView
 {
+
+	var $user;
+
+	public function __construct($user)
+	{
+		$this->user = $user;
+	}
+	
 	/**
 	 * @method getHtmlOutPut this will return an HTML formated text
 	 *
@@ -39,12 +49,11 @@ class HomeView
 			$this->output =
 			AssetsView::getCssOutput().'
 			<!doctype html>
-			<html lang="en">
+			<html lang="en"> 
 			<head>
 				<meta charset="utf-8">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<meta name="description" content="Dealer e-Process  OAuth2.0 Demo">
-				<meta name="google-signin-client_id" content="872235533570-h6al8us7v5kvkkv4mi4306ll97ar4v9e.apps.googleusercontent.com">
 				<title>DEP OAuth2.0 Demo</title>
 				<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 				' . AssetsView::getJsOutput() . '
@@ -56,25 +65,29 @@ class HomeView
 			
 					<ul class="pure-menu-list">
 						<li class="pure-menu-item"><a href="https://github.com/dariominds/OAuth2" class="pure-menu-link">Github Source Code</a></li>
-						<li class="pure-menu-item"><a href="#" class="pure-menu-link">Logout</a></li>
+						<li class="pure-menu-item"><a href="/logout" class="pure-menu-link">Logout</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="splash-container">
 				<div class="splash">
 					<p class="splash-subhead">
-						Login with your Google
+
+						Login with your Google account
 						<!-- Display Google sign-in button -->
-						<div id="gSignIn"></div>
 					<form action="/login" method="post">
-							<button class="btn btn-default col-lg-2 col-md-2 col-sm-4 col-xs-6" name="provider" type="submit" value="google">
-							Google
+
+
+							<button class="btn btn-default col-lg-2 col-md-2 col-sm-4 col-xs-6 google_login_button" name="provider" type="submit" value="google">
+							<div class="glogo"><img width="20px" alt="Google sign-in" 
+							src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+							</div><div class="glabel">Login with Google</div>
 							</button>
 					</form>						
 
 					</p>
 				</div>
-			</div>			
+			</div>	
 			</body>
 			</html>
 ';

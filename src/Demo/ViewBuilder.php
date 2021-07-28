@@ -2,6 +2,8 @@
 
 namespace DealerEProcess\TheConstruct\Demo;
 
+use DealerEProcess\TheConstruct\Demo\View\HomeView;
+use DealerEProcess\TheConstruct\Demo\View\ProfileView;
 /**
  * ViewBuilder
  *
@@ -15,9 +17,9 @@ class ViewBuilder
 	 *
 	 * @return HomeView
 	 */
-	public function buildHomeView()
+	public function buildHomeView($user)
 	{
-		return new HomeView;
+		return new HomeView($user);
 	}
 
 	/**

@@ -8,6 +8,12 @@
 			"role" : "developer"
 		}
 	],
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "ssh://git@github.com/DealereEProcess/DataStandardization.git"
+		}
+	],	
 	"require": {
 		"guzzlehttp/psr7": "^1.8",
 		"php": ">=7.1",
@@ -15,7 +21,8 @@
 		"psr/http-client": "^1.0",
 		"psr/simple-cache": "^1.0",
 		"psr/http-factory": "^1.0",
-		"google/apiclient": "^2.10"			
+		"google/apiclient": "^2.10",
+		"dealereprocess/data-standardization": "1.*"		
 	},
 	"scripts": {
         	"pre-autoload-dump": "Google\\Task\\Composer::cleanup"

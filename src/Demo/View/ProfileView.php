@@ -1,7 +1,8 @@
 <?php
 
-namespace DealerEProcess\TheConstruct\Demo;
+namespace DealerEProcess\TheConstruct\Demo\View;
 
+use DealerEProcess\TheConstruct\Demo\View\AssetsView;
 /**
  * Home View
  *

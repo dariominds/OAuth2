@@ -41,6 +41,8 @@ class WebApplication
 			case 'logout':
 				session_unset();
 				session_destroy();
+				$service->logOutUser();
+
 				header('Location: /');
 
 				break;
@@ -54,7 +56,9 @@ class WebApplication
 			case 'auth':
 
 				$code = $query['code'];
+
 				$token = $service->getAccessToken($code);
+
 				$_SESSION["accessToken"] = $token;
 
 				header('Location: /profile');
@@ -64,6 +68,7 @@ class WebApplication
 
 				if (!isset($_SESSION['accessToken'])) {
 					header('Location: /');
+					exit;
 				}
 
 				$access_token = $_SESSION['accessToken'];
@@ -80,8 +85,13 @@ class WebApplication
 				$output_str = $view_builder->buildProfileView($user)->getHtmlOutput();
 				break;
 			default:
+				$user = [
+					"fullname" => "test",
+					"email" => "test",
+					"pictureURL" => "test"
+				];
 
-				$output_str = $view_builder->buildHomeView()->getHtmlOutput();
+				$output_str = $view_builder->buildHomeView($user)->getHtmlOutput();
 				break;
 		}
 

@@ -88,5 +88,10 @@ class Service
 		return $this->provider->getUserInfo();
 	}
 
+	public function logOutUser()
+	{
+		$this->provider->revokeToken();
+	}
+
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace DealerEProcess\TheConstruct\Demo;
+namespace DealerEProcess\TheConstruct\Demo\View;
 
 /**
  * AssetsView View
@@ -160,7 +160,7 @@ a.pure-button-primary {
     overflow: hidden;
     /* The following styles are required for the "scroll-over" effect */
     width: 100%;
-    height: 88%;
+    height: 100%;
     top: 0;
     left: 0;
     position: fixed !important;
@@ -249,6 +249,25 @@ a.pure-button-primary {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+.google_login_button{
+	width:180px; 
+	height:40px; 
+	border-radius:3%;
+	text-align:left
+}
+.google_login_button .glogo{
+	display: inline-block;
+	height:40px;
+	padding-right:3px;
+	padding-top:3px;
+	margin-top:3px;
+}
+.google_login_button .glabel{
+	display: inline-block;
+	height:40px;
+	padding-left:3px;
 }
 
 /*
@@ -342,30 +361,13 @@ a.pure-button-primary {
 	public static function getJsOutput()
 	{
 		return '
-<script src="https://accounts.google.com/gsi/client" async defer></script>	
+<script src="https://apis.google.com/js/platform.js" async defer></script>		
 <script>
-
-
 
 function goBack() {
 	window.history.back();
 }
-
-window.onload = function () {
-	google.accounts.id.initialize({
-	  client_id: "872235533570-h6al8us7v5kvkkv4mi4306ll97ar4v9e.apps.googleusercontent.com",
-      callback: function (credentialResponse) {
-		let response = credentialResponse;
-		   //data: JSON.stringify({credential: response.credential})
-		   console.log(response);
-		}
-
-
-	});
-
-	google.accounts.id.prompt();
-  };
 </script>		
-';
+'; 
 	}
 }

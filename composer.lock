@@ -4,8 +4,46 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "859b92717dfd02fee5881ea8b06ba905",
+    "content-hash": "54ebba7b8638350e5a4b5570a5ffb2f5",
     "packages": [
+        {
+            "name": "dealereprocess/data-standardization",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "ssh://git@github.com/DealereEProcess/DataStandardization.git",
+                "reference": "b7d31b65c54846c684f9f00e7b3f76fea002542c"
+            },
+            "require-dev": {
+                "phpspec/prophecy": "1.6.*",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DealerEProcess\\DataStandardization\\": "src/",
+                    "DealerEProcess\\Sample\\DataStandardization\\": "data/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Dan Witten",
+                    "email": "dan.witten@dealereprocess.com",
+                    "role": "developer/mentor/guru"
+                },
+                {
+                    "name": "Charlie Abeling",
+                    "email": "charlie.abeling@dealereprocess.com",
+                    "role": "developer"
+                },
+                {
+                    "name": "Ryan Pierson",
+                    "email": "ryan.pierson@dealereprocess.com",
+                    "role": "developer"
+                }
+            ],
+            "time": "2020-01-29T19:51:42+00:00"
+        },
         {
             "name": "firebase/php-jwt",
             "version": "v5.4.0",

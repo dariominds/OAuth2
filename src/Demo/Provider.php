@@ -79,5 +79,10 @@ class Provider
 
 		return $userInfo;
 	}
+
+	public function revokeToken()
+	{
+		$this->google_client->revokeToken();
+	}
 }
 
