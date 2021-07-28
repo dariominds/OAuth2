@@ -78,18 +78,38 @@ class Service
 		return $this->provider->getAccessToken($code);
 	}
 
-	public function setAccessToken($access_token)
+	public function setAccessCode($code)
 	{
-		$this->provider->setAccessToken($access_token);
+		$token = $this->provider->getAccessToken($code);
+		$this->provider->setAccessToken($token);
+		$_SESSION["accessToken"] = $token;
 	}
 
-	public function getUserInfo()
+	public function getUser()
 	{
-		return $this->provider->getUserInfo();
+		if (isset($_SESSION['accessToken'])) {
+			$this->provider->setAccessToken($_SESSION['accessToken']);
+			$user_info = $this->provider->getUserInfo();
+
+			$user = new User(
+				$user_info['name'],
+				$user_info['email'],
+				$user_info['picture'],
+				true
+			);
+		} else {
+			$user = new User('', '', '', false);
+		}
+		return $user;
+
 	}
 
 	public function logOutUser()
 	{
+		if (isset($_SESSION['accessToken'])) {
+			session_unset();
+			session_destroy();
+		}
 		$this->provider->revokeToken();
 	}
 

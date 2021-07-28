@@ -44,9 +44,9 @@ class ProfileView
 	 */
 	private function getOutput()
 	{
-		$fullname = isset($this->user['fullname']) ? $this->user['fullname'] : "";
-		$email = isset($this->user['email']) ? $this->user['email'] : "";
-		$pictureURL = isset($this->user['pictureURL']) ? $this->user['pictureURL'] : "";
+		$fullname = $this->user->getFullName();
+		$email = $this->user->getEmail();
+		$pictureURL = $this->user->getProfileImage();
 		if (!isset($this->output)) {
 			$this->output =
 			AssetsView::getCssOutput().'

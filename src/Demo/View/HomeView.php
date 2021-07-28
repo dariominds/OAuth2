@@ -18,6 +18,45 @@ class HomeView
 		$this->user = $user;
 	}
 	
+	private function getLogOutLink()
+	{
+		$logout_link = '';
+
+		if ($this->user->getLogStatus()) {
+			$logout_link = '<li class="pure-menu-item"><a href="/logout" class="pure-menu-link">Logout</a></li>';
+		}
+
+		return $logout_link;
+	}
+
+	private function getLoginButton()
+	{
+		$login_button = '';
+
+		if (!$this->user->getLogStatus()) {
+			$login_button = '
+Login with your Google account
+<!-- Display Google sign-in button -->
+<form action="/login" method="post">
+	<button class="btn btn-default col-lg-2 col-md-2 col-sm-4 col-xs-6 google_login_button" name="provider" type="submit" value="google">
+	<div class="glogo"><img width="20px" alt="Google sign-in" 
+	src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+	</div><div class="glabel">Login with Google</div>
+	</button>
+</form>	';
+		} else {
+			$login_button = '
+You are currently Logged in <br/>
+<form action="/logout" method="post">
+<button class="btn btn-default col-lg-2 col-md-2 col-sm-4 col-xs-6" type="submit" value="logout">
+Logout
+</button>
+</form>	';
+		}
+
+		return $login_button;		
+	}
+
 	/**
 	 * @method getHtmlOutPut this will return an HTML formated text
 	 *
@@ -65,27 +104,13 @@ class HomeView
 			
 					<ul class="pure-menu-list">
 						<li class="pure-menu-item"><a href="https://github.com/dariominds/OAuth2" class="pure-menu-link">Github Source Code</a></li>
-						<li class="pure-menu-item"><a href="/logout" class="pure-menu-link">Logout</a></li>
+						'.$this->getLogOutLink().'
 					</ul>
 				</div>
 			</div>
 			<div class="splash-container">
 				<div class="splash">
-					<p class="splash-subhead">
-
-						Login with your Google account
-						<!-- Display Google sign-in button -->
-					<form action="/login" method="post">
-
-
-							<button class="btn btn-default col-lg-2 col-md-2 col-sm-4 col-xs-6 google_login_button" name="provider" type="submit" value="google">
-							<div class="glogo"><img width="20px" alt="Google sign-in" 
-							src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-							</div><div class="glabel">Login with Google</div>
-							</button>
-					</form>						
-
-					</p>
+					<p class="splash-subhead">'.$this->getLoginButton().'</p>
 				</div>
 			</div>	
 			</body>

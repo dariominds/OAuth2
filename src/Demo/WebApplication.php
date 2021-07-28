@@ -35,16 +35,15 @@ class WebApplication
 		$path_segments = explode('/', $path);
 		$route = $path_segments[1];
 
+		$user = $service->getUser();
+
 		$output_str = "";
 		switch ($route)
 		{
 			case 'logout':
-				session_unset();
-				session_destroy();
 				$service->logOutUser();
 
 				header('Location: /');
-
 				break;
 			case 'login':
 
@@ -56,40 +55,20 @@ class WebApplication
 			case 'auth':
 
 				$code = $query['code'];
-
-				$token = $service->getAccessToken($code);
-
-				$_SESSION["accessToken"] = $token;
+				$service->setAccessCode($code);
 
 				header('Location: /profile');
-
 				break;
 			case 'profile':
 
-				if (!isset($_SESSION['accessToken'])) {
+				if (!$user->getLogStatus()) {
 					header('Location: /');
 					exit;
 				}
-
-				$access_token = $_SESSION['accessToken'];
-				$service->setAccessToken($access_token);
-
-				$user_info = $service->getUserInfo();
-
-				$user = [
-					"fullname" => $user_info['name'],
-					"email" => $user_info['email'],
-					"pictureURL" => $user_info['picture']
-				];
-
+				
 				$output_str = $view_builder->buildProfileView($user)->getHtmlOutput();
 				break;
 			default:
-				$user = [
-					"fullname" => "test",
-					"email" => "test",
-					"pictureURL" => "test"
-				];
 
 				$output_str = $view_builder->buildHomeView($user)->getHtmlOutput();
 				break;
